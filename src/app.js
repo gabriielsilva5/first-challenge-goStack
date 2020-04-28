@@ -11,7 +11,7 @@ app.use(cors());
 const repositories = [];
 
 app.get("/repositories", (request, response) => {
-  response.status(200).json(repositories)
+  return response.status(200).json(repositories)
 });
 
 app.post("/repositories", (request, response) => {
@@ -71,7 +71,7 @@ app.post("/repositories/:id/like", (request, response) => {
       response.status(400).json({erro: 'Não existem repositórios com este ID na base de dados!' })
   } else {
     repositories[repoLikeIndex].likes += 1
-    response.status(200).send()
+    response.status(200).json(repositories[repoLikeIndex])
   }
 
 
